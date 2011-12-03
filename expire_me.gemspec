@@ -22,13 +22,19 @@ Gem::Specification.new do |s|
   # generated from git ls-files
   s.files = [
     "License",
-    "README",
     "README.md",
     "Rakefile",
     "expire_me.gemspec",
     "lib/expire_me.rb",
+    "lib/expire_me/adapter.rb",
+    "lib/expire_me/adapters/varnish.rb",
+    "lib/expire_me/expire.rb",
+    "lib/expire_me/railtie.rb",
+    "lib/expire_me/response.rb",
     "lib/expire_me/version.rb",
-    "spec/expire_me_spec.rb"
+    "spec/expire_me_spec.rb",
+    "test/test.rb",
+    "test/test_helper.rb"
   ]
 
   # dependencies
