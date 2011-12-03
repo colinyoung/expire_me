@@ -8,10 +8,14 @@ module ExpireMe
       
       seconds = 0 # Reset for each request.
       
-      if options.empty?
-        self.send :in, descriptor
+      if descriptor.is_a? Array
+        descriptor = descriptor.first # Ruby 1.9.x makes this an array. I do not know why.
+      end
+      
+      if !descriptor.is_a? Hash
+        self.send :in, safe_value(descriptor)
       else
-        self.send descriptor, options        
+        self.send descriptor.keys.first, descriptor.values.first
       end
     end
     
@@ -21,6 +25,20 @@ module ExpireMe
         :seconds => @@seconds,
         :adapter => adapter
       })
+    end
+    
+    protected
+    
+    def safe_value(v)
+      if v.is_a? Array
+        begin
+          v = v.first.to_i
+        rescue Exception => e
+          throw "[ExpireMe] You must submit your expiration time in seconds or ruby date."
+        end
+      end
+      
+      v
     end
   
     private
