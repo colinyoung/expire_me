@@ -16,6 +16,8 @@ Gem::Specification.new do |s|
   s.email = [
     "me@colinyoung.com"
   ]
+  
+  s.add_dependency 'activesupport', ['>= 2.3.9', '< 4']
 
   # generated from git ls-files
   s.files = [
