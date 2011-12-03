@@ -8,7 +8,7 @@ module ExpireMe
     def set_expiration(response, seconds)
       super
       
-      puts "Caching for seconds: #{seconds}"
+      puts "Caching page for seconds: #{seconds}"
       replace_caching_header :age => seconds
     end
     
@@ -20,15 +20,22 @@ module ExpireMe
       return if value.nil? or needle.nil?
       
       if header =~ needle
-        header.interpolate! needle, value
+        self.header.interpolate! needle, value
       else
-        header << header[needle, 1] << value
+        if header.empty?
+          self.header = needle.unregex << value.to_s
+        else
+          self.header = self.header << header[needle, 1] << value.to_s
+        end
       end
-      puts "header ended as: #{header}"
     end
     
     def header
       response.headers['Cache-Control'] || ""
+    end
+    
+    def header=(s)
+      response.headers['Cache-Control'] = s
     end
     
   end

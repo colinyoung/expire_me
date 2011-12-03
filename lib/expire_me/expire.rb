@@ -2,7 +2,7 @@ module ExpireMe
   
   class << self
     
-    attr_accessor :seconds
+    @@seconds = 0
       
     def expire=(descriptor, options={})
       
@@ -18,7 +18,7 @@ module ExpireMe
     def expire_http_response(http_response)
       Response.new({
         :http_response => http_response,
-        :seconds => seconds,
+        :seconds => @@seconds,
         :adapter => adapter
       })
     end
@@ -31,15 +31,15 @@ module ExpireMe
     end
   
     def at time
-      seconds = (time - Time.now).to_i
+      @@seconds = (time - Time.now).to_i
     end
     
     def in seconds
-      seconds = seconds
+      @@seconds = seconds
     end
   
     def now
-      seconds = 0
+      @@seconds = 0
     end
   
   end

@@ -7,7 +7,7 @@ module ExpireMe
       ExpireMe.expire = descriptor, options
       
       include ExpireMe::Controller::InstanceMethods
-      before_filter :update_cache_expiration
+      after_filter :update_cache_expiration
     end
     
     def no_cache
