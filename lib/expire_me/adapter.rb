@@ -18,12 +18,15 @@ end
 
 class Regexp
   def unregex
-    puts "unr: #{self.to_s}"
-    s = self.to_s.gsub('?i-mx:', ''). # Remove initial ruby stuff
+    self.to_s.gsub('?i-mx:', ''). # Remove initial ruby stuff
       gsub(/(\=\)|)\(\[0-9\]\+\)/, '='). # Empties the value subgroup, heavily escaped because we're operating on a regex
       gsub(/[^\d\w\-\=]/, '') # Replaces all nondigits and words
-    puts s
-    s
+  end
+end
+
+class String
+  def interpolate(regex, add)
+    self.sub(self[regex], self[regex, 1] << add.to_s)
   end
 end
 
