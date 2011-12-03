@@ -8,7 +8,7 @@ module ExpireMe
 
     MAJOR     = 0
     MINOR     = 0
-    TINY      = 2
+    TINY      = 3
     SIGNATURE = [MAJOR, MINOR, TINY]
     STRING    = SIGNATURE.join '.'
 

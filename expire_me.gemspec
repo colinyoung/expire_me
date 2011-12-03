@@ -2,7 +2,7 @@
 Gem::Specification.new do |s|
   # general infos
   s.name        = "expire_me"
-  s.version     = "0.0.2"
+  s.version     = "0.0.3"
   s.description = "control varnish expiration"
   s.homepage    = "http://github.com/colinyoung/expire_me"
   s.summary     = s.description

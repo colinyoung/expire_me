@@ -35,7 +35,7 @@ module ExpireMe
     end
     
     def in seconds
-      @@seconds = seconds
+      @@seconds = seconds.to_i
     end
   
     def now
